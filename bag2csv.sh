@@ -1,5 +1,5 @@
 #!/bin/bash
-function bagger {
+function unbagger {
   echo Processing $1
   local FILENAME=$1
   local BAGNAME=${FILENAME%.*}
@@ -16,7 +16,7 @@ if [ $# -gt 0 ]
 then
   for BAGS in $@
   do
-    bagger $BAGS
+    unbagger $BAGS
   done
 else
   BAGFILES=(*.bag)
@@ -25,7 +25,7 @@ else
     echo Found ${BAGFILES[@]}
     for BAGS in ${BAGFILES[@]}
     do
-      bagger $BAGS
+      unbagger $BAGS
     done
   else
     echo "No rosbags provided."
