@@ -6,9 +6,10 @@ function unbagger {
   mkdir -p $(pwd)/$BAGNAME
   for TOPIC in `rostopic list -b $1`; do
     echo Starting ${BAGNAME}-${TOPIC:1}
-    rostopic echo -p -b $1 $TOPIC > $(pwd)/$BAGNAME/${BAGNAME}${TOPIC//\//_}.csv ;
+    rostopic echo -p -b $1 $TOPIC > $(pwd)/$BAGNAME/${BAGNAME}${TOPIC//\//_}.csv &
     echo Done ${BAGNAME}-${TOPIC:1}
   done
+  wait
   echo Done extracting data from $1 to CSVs to $(pwd)/$BAGNAME/.
 }
 
